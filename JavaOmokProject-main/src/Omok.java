@@ -70,9 +70,9 @@ public class Omok extends JFrame {
 		}
 		if (count == 5) {
 			if (e.state.equals("B")) {
-				JOptionPane.showMessageDialog(null, "�浹 �¸�", "�浹 �¸�", JOptionPane.QUESTION_MESSAGE);
+				JOptionPane.showMessageDialog(null, "흑돌 승리!", "흑돌 승리!", JOptionPane.QUESTION_MESSAGE);
 			} else {
-				JOptionPane.showMessageDialog(null, "�鵹 �¸�", "�鵹 �¸�", JOptionPane.QUESTION_MESSAGE);
+				JOptionPane.showMessageDialog(null, "백돌 승리!", "백돌 승리!", JOptionPane.QUESTION_MESSAGE);
 			}
 
 		}
@@ -91,10 +91,11 @@ public class Omok extends JFrame {
 		}
 		if (count == 5) {
 			if (e.state.equals("B")) {
-				JOptionPane.showMessageDialog(null, "�浹 �¸�", "�浹 �¸�", JOptionPane.QUESTION_MESSAGE);
+				JOptionPane.showMessageDialog(null, "흑돌 승리!", "흑돌 승리!", JOptionPane.QUESTION_MESSAGE);
 			} else {
-				JOptionPane.showMessageDialog(null, "�鵹 �¸�", "�鵹 �¸�", JOptionPane.QUESTION_MESSAGE);
+				JOptionPane.showMessageDialog(null, "백돌 승리!", "백돌 승리!", JOptionPane.QUESTION_MESSAGE);
 			}
+
 		}
 		////////////////////
 		checkx = e.x;
@@ -114,9 +115,9 @@ public class Omok extends JFrame {
 		}
 		if (count == 5) {
 			if (e.state.equals("B")) {
-				JOptionPane.showMessageDialog(null, "�浹 �¸�", "�浹 �¸�", JOptionPane.QUESTION_MESSAGE);
+				JOptionPane.showMessageDialog(null, "흑돌 승리!", "흑돌 승리!", JOptionPane.QUESTION_MESSAGE);
 			} else {
-				JOptionPane.showMessageDialog(null, "�鵹 �¸�", "�鵹 �¸�", JOptionPane.QUESTION_MESSAGE);
+				JOptionPane.showMessageDialog(null, "백돌 승리!", "백돌 승리!", JOptionPane.QUESTION_MESSAGE);
 			}
 
 		}
@@ -139,9 +140,9 @@ public class Omok extends JFrame {
 
 		if (count == 5) {
 			if (e.state.equals("B")) {
-				JOptionPane.showMessageDialog(null, "�浹 �¸�", "�浹 �¸�", JOptionPane.QUESTION_MESSAGE);
+				JOptionPane.showMessageDialog(null, "흑돌 승리!", "흑돌 승리!", JOptionPane.QUESTION_MESSAGE);
 			} else {
-				JOptionPane.showMessageDialog(null, "�鵹 �¸�", "�鵹 �¸�", JOptionPane.QUESTION_MESSAGE);
+				JOptionPane.showMessageDialog(null, "백돌 승리!", "백돌 승리!", JOptionPane.QUESTION_MESSAGE);
 			}
 
 		}
