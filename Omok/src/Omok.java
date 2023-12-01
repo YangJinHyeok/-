@@ -3,7 +3,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.util.Random;
 
-public class Omok extends JFrame {
+public class Omok extends JPanel {
     GoEgg goEgg[][];
     ImageIcon img = new ImageIcon("images//empty.png");
     ImageIcon white = new ImageIcon("images//white.png");
@@ -15,12 +15,11 @@ public class Omok extends JFrame {
     Random random = new Random();
 
     public Omok(int initialTime) {
-        setTitle("오목");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setPreferredSize(new Dimension(1000, 1000));
 
         JLayeredPane layeredPane = new JLayeredPane();
         layeredPane.setPreferredSize(new Dimension(1000, 1000));
-        getContentPane().add(layeredPane);
+        this.add(layeredPane);
 
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(26, 26));
@@ -37,7 +36,7 @@ public class Omok extends JFrame {
                 goEgg[i][j].setBorderPainted(false);
             }
         }
-        
+
         layeredPane.add(panel, Integer.valueOf(1));
         timeLeft = initialTime;
 
@@ -60,9 +59,9 @@ public class Omok extends JFrame {
             }
         });
         timer.start();
-        
 
-        pack();
+
+//        pack();
         setVisible(true);
     }
 
@@ -128,7 +127,7 @@ public class Omok extends JFrame {
 				JOptionPane.showMessageDialog(null, "백돌 승리", "백돌 승리", JOptionPane.QUESTION_MESSAGE);
 			}
 		}
-		
+
 		checkx = e.x;
 		checky = e.y;
 		count = 0;
@@ -148,7 +147,7 @@ public class Omok extends JFrame {
 				JOptionPane.showMessageDialog(null, "백돌 승리", "백돌 승리", JOptionPane.QUESTION_MESSAGE);
 			}
 		}
-		
+
 		checkx = e.x;
 		checky = e.y;
 		count = 0;
@@ -172,7 +171,7 @@ public class Omok extends JFrame {
 			}
 
 		}
-		
+
 		checkx = e.x;
 		checky = e.y;
 		count = 0;
@@ -200,7 +199,7 @@ public class Omok extends JFrame {
 
 	}
 
-    
+
 }
 
 

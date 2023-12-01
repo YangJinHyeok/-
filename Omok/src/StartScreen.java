@@ -20,7 +20,7 @@ public class StartScreen extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                new Omok(30);
+                new Main(30);
             }
         });
 
@@ -30,7 +30,7 @@ public class StartScreen extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                new Omok(60);
+                new Main(60);
             }
         });
 
