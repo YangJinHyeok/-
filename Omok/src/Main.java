@@ -2,14 +2,14 @@ import java.awt.*;
 import javax.swing.*;
 
 public class Main extends JFrame {
-    Util util = new Util();
+    Util util;
     private int initialTime;
     Omok omok;
-//    Omok omok = new Omok(initialTime);
     public Main(int initialTime) {
         this.setTitle("오목 게임 중...");
         this.initialTime = initialTime;
         omok = new Omok(initialTime);
+        util = new Util(omok);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Container c = getContentPane();
         c.setLayout(new BorderLayout());

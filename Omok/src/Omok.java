@@ -10,9 +10,15 @@ public class Omok extends JPanel {
     ImageIcon black = new ImageIcon("images//black.png");
     ImageIcon turn = black;
     Timer timer;
-    JLabel timerLabel;
-    int timeLeft;
+    public JLabel timerLabel;
+    public int timeLeft;
     Random random = new Random();
+    public int getTimeLeft() {
+        return this.timeLeft;
+    }
+    public ImageIcon getTurn() {
+        return this.turn;
+    }
 
     public Omok(int initialTime) {
         this.setPreferredSize(new Dimension(1000, 1000));
@@ -41,7 +47,6 @@ public class Omok extends JPanel {
         timeLeft = initialTime;
 
         timerLabel = new JLabel(String.valueOf(initialTime), SwingConstants.RIGHT);
-        timerLabel.setBounds(930, 0, 50, 50);
         timerLabel.setFont(new Font("Serif", Font.BOLD, 30));
         timerLabel.setForeground(Color.WHITE);
         layeredPane.add(timerLabel, Integer.valueOf(2));
