@@ -10,6 +10,7 @@ public class Util extends JPanel {
     ImageIcon white2 = new ImageIcon("images//white_util.png");
     Omok omok;
     JLabel timerLabel, blackTimerLabel, whiteTimerLabel;;
+    Timer utilTimer;
     public Util(Omok omok) {
         this.setLayout(new BorderLayout(20, 5));
         this.omok = omok;
@@ -28,18 +29,23 @@ public class Util extends JPanel {
         northPanel.add(whiteTimerLabel);
         northPanel.add(new JLabel(white2));
         
-        new Timer(1000, new ActionListener() {
+        utilTimer = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (omok.getTurn() == black) {
-                    blackTimerLabel.setText(String.valueOf(omok.getTimeLeft()));
-                    whiteTimerLabel.setText("");
+                if (omok.isWin()) {
+                    utilTimer.stop();
                 } else {
-                    whiteTimerLabel.setText(String.valueOf(omok.getTimeLeft()));
-                    blackTimerLabel.setText("");
-                }
+                    if (omok.getTurn() == black) {
+                        blackTimerLabel.setText(String.valueOf(omok.getTimeLeft()));
+                        whiteTimerLabel.setText("");
+                    } else {
+                        whiteTimerLabel.setText(String.valueOf(omok.getTimeLeft()));
+                        blackTimerLabel.setText("");
+                    }
+                }                
             }
-        }).start();
+        });
+        utilTimer.start();
 
         JPanel southPanel = new JPanel();
         JButton newGame = new JButton("새 게임");

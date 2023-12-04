@@ -10,6 +10,12 @@ public class Omok extends JPanel {
     ImageIcon black = new ImageIcon("images//black.png");
     ImageIcon turn = black;
     Timer timer;
+    boolean win = false;
+    
+    public boolean isWin() {
+        return win;
+    }
+    Util util;
     public JLabel timerLabel;
     public int timeLeft;
     Random random = new Random();
@@ -21,6 +27,7 @@ public class Omok extends JPanel {
     }
 
     public Omok(int initialTime) {
+    	this.util = util;
         this.setPreferredSize(new Dimension(1000, 1000));
 
         JLayeredPane layeredPane = new JLayeredPane();
@@ -126,11 +133,21 @@ public class Omok extends JPanel {
 			count++;
 		}
 		if (count == 5) {
+			win = true;
 			if (e.state.equals("B")) {
 				JOptionPane.showMessageDialog(null, "흑돌 승리", "흑돌 승리", JOptionPane.QUESTION_MESSAGE);
 			} else {
 				JOptionPane.showMessageDialog(null, "백돌 승리", "백돌 승리", JOptionPane.QUESTION_MESSAGE);
 			}
+			timer.stop();
+			for (int i = 0; i < 26; i++) {
+		        for (int j = 0; j < 26; j++) {
+		            ActionListener[] actionListeners = goEgg[i][j].getActionListeners();
+		            for (ActionListener actionListener : actionListeners) {
+		                goEgg[i][j].removeActionListener(actionListener);
+		            }
+		        }
+		    }
 		}
 
 		checkx = e.x;
@@ -146,11 +163,21 @@ public class Omok extends JPanel {
 			count++;
 		}
 		if (count == 5) {
+			win = true;
 			if (e.state.equals("B")) {
 				JOptionPane.showMessageDialog(null, "흑돌 승리", "흑돌 승리", JOptionPane.QUESTION_MESSAGE);
 			} else {
 				JOptionPane.showMessageDialog(null, "백돌 승리", "백돌 승리", JOptionPane.QUESTION_MESSAGE);
 			}
+			timer.stop();
+			for (int i = 0; i < 26; i++) {
+		        for (int j = 0; j < 26; j++) {
+		            ActionListener[] actionListeners = goEgg[i][j].getActionListeners();
+		            for (ActionListener actionListener : actionListeners) {
+		                goEgg[i][j].removeActionListener(actionListener);
+		            }
+		        }
+		    }
 		}
 
 		checkx = e.x;
@@ -169,11 +196,21 @@ public class Omok extends JPanel {
 			count++;
 		}
 		if (count == 5) {
+			win = true;
 			if (e.state.equals("B")) {
 				JOptionPane.showMessageDialog(null, "흑돌 승리", "흑돌 승리", JOptionPane.QUESTION_MESSAGE);
 			} else {
 				JOptionPane.showMessageDialog(null, "백돌 승리", "백돌 승리", JOptionPane.QUESTION_MESSAGE);
 			}
+			timer.stop();
+			for (int i = 0; i < 26; i++) {
+		        for (int j = 0; j < 26; j++) {
+		            ActionListener[] actionListeners = goEgg[i][j].getActionListeners();
+		            for (ActionListener actionListener : actionListeners) {
+		                goEgg[i][j].removeActionListener(actionListener);
+		            }
+		        }
+		    }
 
 		}
 
@@ -194,11 +231,21 @@ public class Omok extends JPanel {
 		}
 
 		if (count == 5) {
+			win = true;
 			if (e.state.equals("B")) {
 				JOptionPane.showMessageDialog(null, "흑돌 승리", "흑돌 승리", JOptionPane.QUESTION_MESSAGE);
 			} else {
 				JOptionPane.showMessageDialog(null, "백돌 승리", "백돌 승리", JOptionPane.QUESTION_MESSAGE);
 			}
+			timer.stop();
+			for (int i = 0; i < 26; i++) {
+		        for (int j = 0; j < 26; j++) {
+		            ActionListener[] actionListeners = goEgg[i][j].getActionListeners();
+		            for (ActionListener actionListener : actionListeners) {
+		                goEgg[i][j].removeActionListener(actionListener);
+		            }
+		        }
+		    }
 
 		}
 
