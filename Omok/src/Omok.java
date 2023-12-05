@@ -15,24 +15,27 @@ public class Omok extends JPanel {
     boolean win = false;
     Stack<GoEgg> stoneStack = new Stack<>();
     Stack<ImageIcon> turnStack = new Stack<>();
-    
+
     public boolean isWin() {
         return win;
     }
+
     Util util;
     public JLabel timerLabel;
     public int timeLeft;
     Random random = new Random();
+
     public int getTimeLeft() {
         return this.timeLeft;
     }
+
     public ImageIcon getTurn() {
         return this.turn;
     }
 
     public Omok(int initialTime) {
-    	
-    	this.util = util;
+
+        this.util = util;
         this.setPreferredSize(new Dimension(1000, 1000));
 
         JLayeredPane layeredPane = new JLayeredPane();
@@ -93,7 +96,7 @@ public class Omok extends JPanel {
         goEgg[x][y].state = turn == white ? "W" : "B";
         stoneStack.push(goEgg[x][y]);
         turnStack.push(turn);
-        if(goEgg[x][y].getActionListeners().length > 0) {
+        if (goEgg[x][y].getActionListeners().length > 0) {
             goEgg[x][y].removeActionListener(goEgg[x][y].getActionListeners()[0]);
         }
         checkWin(goEgg[x][y]);
@@ -102,22 +105,23 @@ public class Omok extends JPanel {
     }
 
     class myActionListener implements ActionListener {
-    	private int initialTime; // 멤버 변수 추가
+        private int initialTime; // 멤버 변수 추가
 
         public myActionListener(int initialTime) { // 생성자 추가
             this.initialTime = initialTime; // 멤버 변수 초기화
         }
+
         @Override
         public void actionPerformed(ActionEvent e) {
             GoEgg wi = (GoEgg) e.getSource();
             if (turn == white) {
-            	turnStack.push(turn);
+                turnStack.push(turn);
                 wi.setIcon(white);
                 wi.state = "W";
                 turn = black;
 
             } else {
-            	turnStack.push(turn);
+                turnStack.push(turn);
                 wi.setIcon(black);
                 wi.state = "B";
                 turn = white;
@@ -131,135 +135,181 @@ public class Omok extends JPanel {
     }
 
     public void checkWin(GoEgg e) {
-		int checkx = e.x;
-		int checky = e.y;
-		int count = 0;
-		while (checky >= 0 && goEgg[checkx][checky].state.equals(e.state)) {
-			checky -= 1;
-		}
-		checky += 1;
-		while (checky < 26 && goEgg[checkx][checky].state.equals(e.state)) {
-			checky += 1;
-			count++;
-		}
-		if (count == 5) {
-			win = true;
-			if (e.state.equals("B")) {
-				JOptionPane.showMessageDialog(null, "흑돌 승리", "흑돌 승리", JOptionPane.QUESTION_MESSAGE);
-			} else {
-				JOptionPane.showMessageDialog(null, "백돌 승리", "백돌 승리", JOptionPane.QUESTION_MESSAGE);
-			}
-			timer.stop();
-			for (int i = 0; i < 26; i++) {
-		        for (int j = 0; j < 26; j++) {
-		            ActionListener[] actionListeners = goEgg[i][j].getActionListeners();
-		            for (ActionListener actionListener : actionListeners) {
-		                goEgg[i][j].removeActionListener(actionListener);
-		            }
-		        }
-		    }
-		}
+        int checkx = e.x;
+        int checky = e.y;
+        int count = 0;
+        while (checky >= 0 && goEgg[checkx][checky].state.equals(e.state)) {
+            checky -= 1;
+        }
+        checky += 1;
+        while (checky < 26 && goEgg[checkx][checky].state.equals(e.state)) {
+            checky += 1;
+            count++;
+        }
+        if (count == 5) {
+            win = true;
+            if (e.state.equals("B")) {
+                JOptionPane.showMessageDialog(null, "흑돌 승리", "흑돌 승리", JOptionPane.QUESTION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "백돌 승리", "백돌 승리", JOptionPane.QUESTION_MESSAGE);
+            }
+            timer.stop();
+            for (int i = 0; i < 26; i++) {
+                for (int j = 0; j < 26; j++) {
+                    ActionListener[] actionListeners = goEgg[i][j].getActionListeners();
+                    for (ActionListener actionListener : actionListeners) {
+                        goEgg[i][j].removeActionListener(actionListener);
+                    }
+                }
+            }
+        }
+        if (count == 6) {
+            JOptionPane.showMessageDialog(null, "6목 감지! 게임을 계속합니다", "6목 감지", JOptionPane.QUESTION_MESSAGE);
+            if (!stoneStack.isEmpty() && !turnStack.isEmpty()) {
+                GoEgg lastStone = stoneStack.pop();
+                ImageIcon lastTurn = turnStack.pop();
+                lastStone.setIcon(img);
+                lastStone.state = "N";
+                turn = lastTurn;
+                lastStone.addActionListener(new myActionListener(getTimeLeft()));
+            }
+        }
 
-		checkx = e.x;
-		checky = e.y;
-		count = 0;
+        checkx = e.x;
+        checky = e.y;
+        count = 0;
 
-		while (checkx >= 0 && goEgg[checkx][checky].state.equals(e.state)) {
-			checkx -= 1;
-		}
-		checkx += 1;
-		while (checkx < 26 && goEgg[checkx][checky].state.equals(e.state)) {
-			checkx += 1;
-			count++;
-		}
-		if (count == 5) {
-			win = true;
-			if (e.state.equals("B")) {
-				JOptionPane.showMessageDialog(null, "흑돌 승리", "흑돌 승리", JOptionPane.QUESTION_MESSAGE);
-			} else {
-				JOptionPane.showMessageDialog(null, "백돌 승리", "백돌 승리", JOptionPane.QUESTION_MESSAGE);
-			}
-			timer.stop();
-			for (int i = 0; i < 26; i++) {
-		        for (int j = 0; j < 26; j++) {
-		            ActionListener[] actionListeners = goEgg[i][j].getActionListeners();
-		            for (ActionListener actionListener : actionListeners) {
-		                goEgg[i][j].removeActionListener(actionListener);
-		            }
-		        }
-		    }
-		}
+        while (checkx >= 0 && goEgg[checkx][checky].state.equals(e.state)) {
+            checkx -= 1;
+        }
+        checkx += 1;
+        while (checkx < 26 && goEgg[checkx][checky].state.equals(e.state)) {
+            checkx += 1;
+            count++;
+        }
+        if (count == 5) {
+            win = true;
+            if (e.state.equals("B")) {
+                JOptionPane.showMessageDialog(null, "흑돌 승리", "흑돌 승리", JOptionPane.QUESTION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "백돌 승리", "백돌 승리", JOptionPane.QUESTION_MESSAGE);
+            }
+            timer.stop();
+            for (int i = 0; i < 26; i++) {
+                for (int j = 0; j < 26; j++) {
+                    ActionListener[] actionListeners = goEgg[i][j].getActionListeners();
+                    for (ActionListener actionListener : actionListeners) {
+                        goEgg[i][j].removeActionListener(actionListener);
+                    }
+                }
+            }
+        }
+        if (count == 6) {
+            JOptionPane.showMessageDialog(null, "6목 감지! 게임을 계속합니다!", "6목 감지", JOptionPane.QUESTION_MESSAGE);
+            if (!stoneStack.isEmpty() && !turnStack.isEmpty()) {
+                GoEgg lastStone = stoneStack.pop();
+                ImageIcon lastTurn = turnStack.pop();
+                lastStone.setIcon(img);
+                lastStone.state = "N";
+                turn = lastTurn;
+                lastStone.addActionListener(new myActionListener(getTimeLeft()));
+            }
 
-		checkx = e.x;
-		checky = e.y;
-		count = 0;
 
-		while (checkx >= 0 && checky >= 0 && goEgg[checkx][checky].state.equals(e.state)) {
-			checkx -= 1;
-			checky -= 1;
-		}
-		checkx += 1;
-		checky += 1;
-		while (checkx < 26 && checky < 26 && goEgg[checkx][checky].state.equals(e.state)) {
-			checkx += 1;
-			checky += 1;
-			count++;
-		}
-		if (count == 5) {
-			win = true;
-			if (e.state.equals("B")) {
-				JOptionPane.showMessageDialog(null, "흑돌 승리", "흑돌 승리", JOptionPane.QUESTION_MESSAGE);
-			} else {
-				JOptionPane.showMessageDialog(null, "백돌 승리", "백돌 승리", JOptionPane.QUESTION_MESSAGE);
-			}
-			timer.stop();
-			for (int i = 0; i < 26; i++) {
-		        for (int j = 0; j < 26; j++) {
-		            ActionListener[] actionListeners = goEgg[i][j].getActionListeners();
-		            for (ActionListener actionListener : actionListeners) {
-		                goEgg[i][j].removeActionListener(actionListener);
-		            }
-		        }
-		    }
+        }
 
-		}
+        checkx = e.x;
+        checky = e.y;
+        count = 0;
 
-		checkx = e.x;
-		checky = e.y;
-		count = 0;
+        while (checkx >= 0 && checky >= 0 && goEgg[checkx][checky].state.equals(e.state)) {
+            checkx -= 1;
+            checky -= 1;
+        }
+        checkx += 1;
+        checky += 1;
+        while (checkx < 26 && checky < 26 && goEgg[checkx][checky].state.equals(e.state)) {
+            checkx += 1;
+            checky += 1;
+            count++;
+        }
+        if (count == 5) {
+            win = true;
+            if (e.state.equals("B")) {
+                JOptionPane.showMessageDialog(null, "흑돌 승리", "흑돌 승리", JOptionPane.QUESTION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "백돌 승리", "백돌 승리", JOptionPane.QUESTION_MESSAGE);
+            }
+            timer.stop();
+            for (int i = 0; i < 26; i++) {
+                for (int j = 0; j < 26; j++) {
+                    ActionListener[] actionListeners = goEgg[i][j].getActionListeners();
+                    for (ActionListener actionListener : actionListeners) {
+                        goEgg[i][j].removeActionListener(actionListener);
+                    }
+                }
+            }
 
-		while (checkx >= 0 && checky < 26 && goEgg[checkx][checky].state.equals(e.state)) {
-			checkx -= 1;
-			checky += 1;
-		}
-		checkx += 1;
-		checky -= 1;
-		while (checkx < 26 && checky >= 0 && goEgg[checkx][checky].state.equals(e.state)) {
-			checkx += 1;
-			checky -= 1;
-			count++;
-		}
+        }
+        if (count == 6) {
+            JOptionPane.showMessageDialog(null, "6목 감지! 게임을 계속합니다", "6목 감지", JOptionPane.QUESTION_MESSAGE);
+            if (!stoneStack.isEmpty() && !turnStack.isEmpty()) {
+                GoEgg lastStone = stoneStack.pop();
+                ImageIcon lastTurn = turnStack.pop();
+                lastStone.setIcon(img);
+                lastStone.state = "N";
+                turn = lastTurn;
+                lastStone.addActionListener(new myActionListener(getTimeLeft()));
+            }
+        }
 
-		if (count == 5) {
-			win = true;
-			if (e.state.equals("B")) {
-				JOptionPane.showMessageDialog(null, "흑돌 승리", "흑돌 승리", JOptionPane.QUESTION_MESSAGE);
-			} else {
-				JOptionPane.showMessageDialog(null, "백돌 승리", "백돌 승리", JOptionPane.QUESTION_MESSAGE);
-			}
-			timer.stop();
-			for (int i = 0; i < 26; i++) {
-		        for (int j = 0; j < 26; j++) {
-		            ActionListener[] actionListeners = goEgg[i][j].getActionListeners();
-		            for (ActionListener actionListener : actionListeners) {
-		                goEgg[i][j].removeActionListener(actionListener);
-		            }
-		        }
-		    }
+        checkx = e.x;
+        checky = e.y;
+        count = 0;
 
-		}
+        while (checkx >= 0 && checky < 26 && goEgg[checkx][checky].state.equals(e.state)) {
+            checkx -= 1;
+            checky += 1;
+        }
+        checkx += 1;
+        checky -= 1;
+        while (checkx < 26 && checky >= 0 && goEgg[checkx][checky].state.equals(e.state)) {
+            checkx += 1;
+            checky -= 1;
+            count++;
+        }
 
-	}
+        if (count == 5) {
+            win = true;
+            if (e.state.equals("B")) {
+                JOptionPane.showMessageDialog(null, "흑돌 승리", "흑돌 승리", JOptionPane.QUESTION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "백돌 승리", "백돌 승리", JOptionPane.QUESTION_MESSAGE);
+            }
+            timer.stop();
+            for (int i = 0; i < 26; i++) {
+                for (int j = 0; j < 26; j++) {
+                    ActionListener[] actionListeners = goEgg[i][j].getActionListeners();
+                    for (ActionListener actionListener : actionListeners) {
+                        goEgg[i][j].removeActionListener(actionListener);
+                    }
+                }
+            }
+
+        }
+        if (count == 6) {
+            JOptionPane.showMessageDialog(null, "6목 감지! 게임을 계속합니다", "6목 감지", JOptionPane.QUESTION_MESSAGE);
+            if (!stoneStack.isEmpty() && !turnStack.isEmpty()) {
+                GoEgg lastStone = stoneStack.pop();
+                ImageIcon lastTurn = turnStack.pop();
+                lastStone.setIcon(img);
+                lastStone.state = "N";
+                turn = lastTurn;
+                lastStone.addActionListener(new myActionListener(getTimeLeft()));
+            }
+        }
+
+    }
 
 
 }
