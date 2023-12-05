@@ -3,6 +3,8 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.util.Random;
 import java.util.Stack;
+import javax.sound.sampled.*;
+import java.io.File;
 
 
 public class Omok extends JPanel {
@@ -110,10 +112,25 @@ public class Omok extends JPanel {
         public myActionListener(int initialTime) { // 생성자 추가
             this.initialTime = initialTime; // 멤버 변수 초기화
         }
+        public void playSound() {
+            try {
+                File soundFile = new File("sounds//Omok.wav"); 
+                AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);
+                Clip clip = AudioSystem.getClip();
+                clip.open(audioIn);
+                FloatControl gainControl = 
+                        (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+                gainControl.setValue(-20.0f);
+                clip.start();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
 
         @Override
         public void actionPerformed(ActionEvent e) {
             GoEgg wi = (GoEgg) e.getSource();
+            playSound();
             if (turn == white) {
                 turnStack.push(turn);
                 wi.setIcon(white);

@@ -1,11 +1,19 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
+import java.io.File;
 
 public class StartScreen extends JFrame {
+	Clip clip;
+	
     public StartScreen() {
         setTitle("오목 시작 화면");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
 
         Container c = getContentPane();
         c.setLayout(null);
@@ -29,7 +37,8 @@ public class StartScreen extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                new Main(30);
+                clip.stop();
+                new Main(30, StartScreen.this);
             }
         });
 
@@ -48,7 +57,8 @@ public class StartScreen extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                new Main(60);
+                clip.stop();
+                new Main(60, StartScreen.this);
             }
         });
 
@@ -56,7 +66,27 @@ public class StartScreen extends JFrame {
         background.add(loseButton);
 
         setSize(1000, 1000);
+        setLocationRelativeTo(null);
         setVisible(true);
+        
+        playSound();
+    }
+    
+    public void playSound() {
+        try {
+            File soundFile = new File("sounds//StartScreen.wav"); 
+            AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);
+            this.clip = AudioSystem.getClip();
+            this.clip.open(audioIn);
+
+            FloatControl gainControl = 
+                (FloatControl) this.clip.getControl(FloatControl.Type.MASTER_GAIN);
+            gainControl.setValue(-10.0f);
+            this.clip.loop(Clip.LOOP_CONTINUOUSLY);
+            this.clip.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args) {

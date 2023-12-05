@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 
 
 public class Util extends JPanel {
+	StartScreen startScreen;
+	
 	ImageIcon img = new ImageIcon("images//empty.png");
     ImageIcon black2 = new ImageIcon("images//black_util.png");
     ImageIcon white2 = new ImageIcon("images//white_util.png");
@@ -13,7 +15,8 @@ public class Util extends JPanel {
     JLabel timerLabel, blackTimerLabel, whiteTimerLabel;;
     Timer utilTimer;
     Main main;
-    public Util(Omok omok, Main main) {
+    public Util(Omok omok, Main main, StartScreen startScreen) {
+    	this.startScreen = startScreen;
     	this.main = main;
         this.setLayout(new BorderLayout(20, 5));
         this.omok = omok;
@@ -52,8 +55,8 @@ public class Util extends JPanel {
             }
         });
         utilTimer.start();
-
-        JPanel southPanel = new JPanel();
+        
+        
         JButton newGame = new JButton();
         newGame.addActionListener(new ActionListener() {
             @Override
@@ -67,9 +70,9 @@ public class Util extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (omok.getTurn() == omok.white) {
-                    JOptionPane.showMessageDialog(null, "흑돌 플레이어가 승리하였습니다.");
+                    JOptionPane.showMessageDialog(null, "상대방이 기권하였습니다. 흑돌 플레이어가 승리하였습니다.");
                 } else {
-                    JOptionPane.showMessageDialog(null, "백돌 플레이어가 승리하였습니다.");
+                    JOptionPane.showMessageDialog(null, "상대방이 기권하였습니다. 백돌 플레이어가 승리하였습니다.");
                 }
                 main.resetGame();
             }
@@ -86,6 +89,15 @@ public class Util extends JPanel {
                     omok.turn = lastTurn;
                     lastStone.addActionListener(omok.new myActionListener(omok.getTimeLeft()));
                 }
+            }
+        });
+        
+        JButton startScreenButton = new JButton();
+        startScreenButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                main.dispose();
+                new StartScreen();
             }
         });
 
@@ -121,12 +133,41 @@ public class Util extends JPanel {
         undo.setIcon(new ImageIcon("images//undo.png"));
         undo.setRolloverIcon(new ImageIcon("images//undo_hover.png"));
         undo.setPressedIcon(new ImageIcon("images//undo_pressed.png"));
+        
+        startScreenButton.setPreferredSize(new Dimension(100, 50));
+        startScreenButton.setBorder(null);
+        startScreenButton.setMargin(new Insets(0, 0, 0, 0));
+        startScreenButton.setOpaque(false);
+        startScreenButton.setContentAreaFilled(false);
+        startScreenButton.setBorderPainted(false);
+        startScreenButton.setFocusPainted(false);
+        startScreenButton.setIcon(new ImageIcon("images//undo.png"));
+        startScreenButton.setRolloverIcon(new ImageIcon("images//undo_hover.png"));
+        startScreenButton.setPressedIcon(new ImageIcon("images//undo_pressed.png"));
+        
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
+        buttonPanel.add(Box.createHorizontalStrut(110));
+        buttonPanel.add(newGame);
+        buttonPanel.add(Box.createHorizontalStrut(10));
+        buttonPanel.add(giveUp);
+        buttonPanel.add(Box.createHorizontalStrut(10));
+        buttonPanel.add(undo);
 
-        southPanel.add(newGame);
-        southPanel.add(giveUp);
-        southPanel.add(undo);
+        JPanel gridPanel = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.anchor = GridBagConstraints.CENTER;
+        gridPanel.add(buttonPanel, gbc);
+
+        JPanel southPanel = new JPanel(new BorderLayout());
+        southPanel.add(gridPanel, BorderLayout.CENTER);
+
+        JPanel eastPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        eastPanel.add(startScreenButton);
+        southPanel.add(eastPanel, BorderLayout.EAST);
 
         this.add(northPanel, BorderLayout.NORTH);
         this.add(southPanel, BorderLayout.SOUTH);
+        
     }
 }
