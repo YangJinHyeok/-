@@ -74,7 +74,15 @@ public class Util extends JPanel {
                 } else {
                     JOptionPane.showMessageDialog(null, "상대방이 기권하였습니다. 백돌 플레이어가 승리하였습니다.");
                 }
-                main.resetGame();
+                omok.timer.stop();
+                for (int i = 0; i < 26; i++) {
+                    for (int j = 0; j < 26; j++) {
+                        ActionListener[] actionListeners = omok.goEgg[i][j].getActionListeners();
+                        for (ActionListener actionListener : actionListeners) {
+                            omok.goEgg[i][j].removeActionListener(actionListener);
+                        }
+                    }
+                }
             }
         });
         JButton undo = new JButton();
