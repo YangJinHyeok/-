@@ -51,7 +51,7 @@ public class Util extends JPanel {
         utilTimer.start();
 
         JPanel southPanel = new JPanel();
-        JButton newGame = new JButton("새 게임");
+        JButton newGame = new JButton();
         newGame.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -59,7 +59,7 @@ public class Util extends JPanel {
             }
         });
 
-        JButton giveUp = new JButton("기권");
+        JButton giveUp = new JButton();
         giveUp.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -71,7 +71,7 @@ public class Util extends JPanel {
                 main.resetGame();
             }
         });
-        JButton undo = new JButton("무르기");
+        JButton undo = new JButton();
         undo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -87,8 +87,37 @@ public class Util extends JPanel {
         });
 
         newGame.setPreferredSize(new Dimension(100, 50));
+        newGame.setBorder(null);
+        newGame.setMargin(new Insets(0, 0, 0, 0));
+        newGame.setOpaque(false);
+        newGame.setContentAreaFilled(false);
+        newGame.setBorderPainted(false);
+        newGame.setFocusPainted(false);
+        newGame.setIcon(new ImageIcon("images//newgame.png"));
+        newGame.setRolloverIcon(new ImageIcon("images//newgame_hover.png"));
+        newGame.setPressedIcon(new ImageIcon("images//newgame_pressed.png"));
+
         giveUp.setPreferredSize(new Dimension(100, 50));
+        giveUp.setBorder(null);
+        giveUp.setMargin(new Insets(0, 0, 0, 0));
+        giveUp.setOpaque(false);
+        giveUp.setContentAreaFilled(false);
+        giveUp.setBorderPainted(false);
+        giveUp.setFocusPainted(false);
+        giveUp.setIcon(new ImageIcon("images//giveUp.png"));
+        giveUp.setRolloverIcon(new ImageIcon("images//giveup_hover.png"));
+        giveUp.setPressedIcon(new ImageIcon("images//giveup_pressed.png"));
+
         undo.setPreferredSize(new Dimension(100, 50));
+        undo.setBorder(null);
+        undo.setMargin(new Insets(0, 0, 0, 0));
+        undo.setOpaque(false);
+        undo.setContentAreaFilled(false);
+        undo.setBorderPainted(false);
+        undo.setFocusPainted(false);
+        undo.setIcon(new ImageIcon("images//undo.png"));
+        undo.setRolloverIcon(new ImageIcon("images//undo_hover.png"));
+        undo.setPressedIcon(new ImageIcon("images//undo_pressed.png"));
 
         southPanel.add(newGame);
         southPanel.add(giveUp);

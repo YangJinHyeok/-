@@ -14,8 +14,17 @@ public class StartScreen extends JFrame {
         background.setSize(1000, 1000);
         c.add(background);
 
-        JButton winButton = new JButton("속기");
-        winButton.setBounds(100, 700, 200, 100);
+        JButton winButton = new JButton();
+        winButton.setBounds(250, 700, 200, 70);
+        winButton.setBorder(null);
+        winButton.setMargin(new Insets(0, 0, 0, 0));
+        winButton.setOpaque(false);
+        winButton.setContentAreaFilled(false);
+        winButton.setBorderPainted(false);
+        winButton.setFocusPainted(false);
+        winButton.setIcon(new ImageIcon("images//button1.png"));
+        winButton.setRolloverIcon(new ImageIcon("images//button1_hover.png"));
+        winButton.setPressedIcon(new ImageIcon("images//button1_pressed.png"));
         winButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -24,8 +33,17 @@ public class StartScreen extends JFrame {
             }
         });
 
-        JButton loseButton = new JButton("보통");
-        loseButton.setBounds(700, 700, 200, 100);
+        JButton loseButton = new JButton();
+        loseButton.setBounds(550, 700, 200, 70);
+        loseButton.setBorder(null);
+        loseButton.setMargin(new Insets(0, 0, 0, 0));
+        loseButton.setOpaque(false);
+        loseButton.setContentAreaFilled(false);
+        loseButton.setBorderPainted(false);
+        loseButton.setFocusPainted(false);
+        loseButton.setIcon(new ImageIcon("images//button2.png"));
+        loseButton.setRolloverIcon(new ImageIcon("images//button2_hover.png"));
+        loseButton.setPressedIcon(new ImageIcon("images//button2_pressed.png"));
         loseButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
