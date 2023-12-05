@@ -2,6 +2,8 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import java.util.Random;
+import java.util.Stack;
+
 
 public class Omok extends JPanel {
     GoEgg goEgg[][];
@@ -11,6 +13,8 @@ public class Omok extends JPanel {
     ImageIcon turn = black;
     Timer timer;
     boolean win = false;
+    Stack<GoEgg> stoneStack = new Stack<>();
+    Stack<ImageIcon> turnStack = new Stack<>();
     
     public boolean isWin() {
         return win;
@@ -27,6 +31,7 @@ public class Omok extends JPanel {
     }
 
     public Omok(int initialTime) {
+    	
     	this.util = util;
         this.setPreferredSize(new Dimension(1000, 1000));
 
@@ -86,6 +91,8 @@ public class Omok extends JPanel {
 
         goEgg[x][y].setIcon(turn);
         goEgg[x][y].state = turn == white ? "W" : "B";
+        stoneStack.push(goEgg[x][y]);
+        turnStack.push(turn);
         if(goEgg[x][y].getActionListeners().length > 0) {
             goEgg[x][y].removeActionListener(goEgg[x][y].getActionListeners()[0]);
         }
@@ -104,15 +111,18 @@ public class Omok extends JPanel {
         public void actionPerformed(ActionEvent e) {
             GoEgg wi = (GoEgg) e.getSource();
             if (turn == white) {
+            	turnStack.push(turn);
                 wi.setIcon(white);
                 wi.state = "W";
                 turn = black;
 
             } else {
+            	turnStack.push(turn);
                 wi.setIcon(black);
                 wi.state = "B";
                 turn = white;
             }
+            stoneStack.push(wi);
             checkWin(wi);
             wi.removeActionListener(this);
             timeLeft = this.initialTime;

@@ -1,17 +1,20 @@
 import java.awt.*;
 import javax.swing.*;
-import javax.swing.Timer;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
 public class Util extends JPanel {
+	ImageIcon img = new ImageIcon("images//empty.png");
     ImageIcon black2 = new ImageIcon("images//black_util.png");
     ImageIcon white2 = new ImageIcon("images//white_util.png");
     Omok omok;
     JLabel timerLabel, blackTimerLabel, whiteTimerLabel;;
     Timer utilTimer;
-    public Util(Omok omok) {
+    Main main;
+    public Util(Omok omok, Main main) {
+    	this.main = main;
         this.setLayout(new BorderLayout(20, 5));
         this.omok = omok;
         this.timerLabel = new JLabel(String.valueOf(omok.getTimeLeft()));
@@ -49,8 +52,39 @@ public class Util extends JPanel {
 
         JPanel southPanel = new JPanel();
         JButton newGame = new JButton("새 게임");
+        newGame.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                main.resetGame();
+            }
+        });
+
         JButton giveUp = new JButton("기권");
+        giveUp.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (omok.getTurn() == omok.white) {
+                    JOptionPane.showMessageDialog(null, "흑돌 플레이어가 승리하였습니다.");
+                } else {
+                    JOptionPane.showMessageDialog(null, "백돌 플레이어가 승리하였습니다.");
+                }
+                main.resetGame();
+            }
+        });
         JButton undo = new JButton("무르기");
+        undo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (!omok.stoneStack.isEmpty() && !omok.turnStack.isEmpty()) {
+                    GoEgg lastStone = omok.stoneStack.pop();
+                    ImageIcon lastTurn = omok.turnStack.pop();
+                    lastStone.setIcon(img);
+                    lastStone.state = "N";
+                    omok.turn = lastTurn;
+                    lastStone.addActionListener(omok.new myActionListener(omok.getTimeLeft()));
+                }
+            }
+        });
 
         newGame.setPreferredSize(new Dimension(100, 50));
         giveUp.setPreferredSize(new Dimension(100, 50));
