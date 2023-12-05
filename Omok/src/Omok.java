@@ -128,11 +128,13 @@ public class Omok extends JPanel {
             }
             stoneStack.push(wi);
             checkWin(wi);
+
             wi.removeActionListener(this);
             timeLeft = this.initialTime;
             timer.restart();
         }
     }
+
 
     public void checkWin(GoEgg e) {
         int checkx = e.x;
