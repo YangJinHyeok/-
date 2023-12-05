@@ -31,6 +31,9 @@ public class Util extends JPanel {
         northPanel.add(new JLabel("vs"));
         northPanel.add(whiteTimerLabel);
         northPanel.add(new JLabel(white2));
+        Font labelFont = new Font("Arial", Font.BOLD, 20);
+        blackTimerLabel.setFont(labelFont);
+        whiteTimerLabel.setFont(labelFont);
         
         utilTimer = new Timer(1000, new ActionListener() {
             @Override

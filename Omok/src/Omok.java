@@ -166,15 +166,29 @@ public class Omok extends JPanel {
             }
         }
         if (count == 6) {
-            JOptionPane.showMessageDialog(null, "6목 감지! 게임을 계속합니다", "6목 감지", JOptionPane.QUESTION_MESSAGE);
-            if (!stoneStack.isEmpty() && !turnStack.isEmpty()) {
-                GoEgg lastStone = stoneStack.pop();
-                ImageIcon lastTurn = turnStack.pop();
-                lastStone.setIcon(img);
-                lastStone.state = "N";
-                turn = lastTurn;
-                lastStone.addActionListener(new myActionListener(getTimeLeft()));
-            }
+        	if(e.state.equals("B")) {
+                JOptionPane.showMessageDialog(null, "6목 감지! 게임을 계속합니다", "6목 감지", JOptionPane.QUESTION_MESSAGE);
+                  if (!stoneStack.isEmpty() && !turnStack.isEmpty()) {
+                      GoEgg lastStone = stoneStack.pop();
+                      ImageIcon lastTurn = turnStack.pop();
+                      lastStone.setIcon(img);
+                      lastStone.state = "N";
+                      turn = lastTurn;
+                      lastStone.addActionListener(new myActionListener(getTimeLeft()));
+                  }
+             }
+             else {
+                JOptionPane.showMessageDialog(null, "백돌 승리", "백돌 승리", JOptionPane.QUESTION_MESSAGE);
+                timer.stop();
+                  for (int i = 0; i < 26; i++) {
+                      for (int j = 0; j < 26; j++) {
+                          ActionListener[] actionListeners = goEgg[i][j].getActionListeners();
+                          for (ActionListener actionListener : actionListeners) {
+                              goEgg[i][j].removeActionListener(actionListener);
+                          }
+                      }
+                  }
+             }
         }
 
         checkx = e.x;
@@ -207,15 +221,29 @@ public class Omok extends JPanel {
             }
         }
         if (count == 6) {
-            JOptionPane.showMessageDialog(null, "6목 감지! 게임을 계속합니다!", "6목 감지", JOptionPane.QUESTION_MESSAGE);
-            if (!stoneStack.isEmpty() && !turnStack.isEmpty()) {
-                GoEgg lastStone = stoneStack.pop();
-                ImageIcon lastTurn = turnStack.pop();
-                lastStone.setIcon(img);
-                lastStone.state = "N";
-                turn = lastTurn;
-                lastStone.addActionListener(new myActionListener(getTimeLeft()));
-            }
+        	if(e.state.equals("B")) {
+                JOptionPane.showMessageDialog(null, "6목 감지! 게임을 계속합니다", "6목 감지", JOptionPane.QUESTION_MESSAGE);
+                  if (!stoneStack.isEmpty() && !turnStack.isEmpty()) {
+                      GoEgg lastStone = stoneStack.pop();
+                      ImageIcon lastTurn = turnStack.pop();
+                      lastStone.setIcon(img);
+                      lastStone.state = "N";
+                      turn = lastTurn;
+                      lastStone.addActionListener(new myActionListener(getTimeLeft()));
+                  }
+             }
+             else {
+                JOptionPane.showMessageDialog(null, "백돌 승리", "백돌 승리", JOptionPane.QUESTION_MESSAGE);
+                timer.stop();
+                  for (int i = 0; i < 26; i++) {
+                      for (int j = 0; j < 26; j++) {
+                          ActionListener[] actionListeners = goEgg[i][j].getActionListeners();
+                          for (ActionListener actionListener : actionListeners) {
+                              goEgg[i][j].removeActionListener(actionListener);
+                          }
+                      }
+                  }
+             }
 
 
         }
@@ -254,15 +282,29 @@ public class Omok extends JPanel {
 
         }
         if (count == 6) {
-            JOptionPane.showMessageDialog(null, "6목 감지! 게임을 계속합니다", "6목 감지", JOptionPane.QUESTION_MESSAGE);
-            if (!stoneStack.isEmpty() && !turnStack.isEmpty()) {
-                GoEgg lastStone = stoneStack.pop();
-                ImageIcon lastTurn = turnStack.pop();
-                lastStone.setIcon(img);
-                lastStone.state = "N";
-                turn = lastTurn;
-                lastStone.addActionListener(new myActionListener(getTimeLeft()));
-            }
+        	if(e.state.equals("B")) {
+                JOptionPane.showMessageDialog(null, "6목 감지! 게임을 계속합니다", "6목 감지", JOptionPane.QUESTION_MESSAGE);
+                  if (!stoneStack.isEmpty() && !turnStack.isEmpty()) {
+                      GoEgg lastStone = stoneStack.pop();
+                      ImageIcon lastTurn = turnStack.pop();
+                      lastStone.setIcon(img);
+                      lastStone.state = "N";
+                      turn = lastTurn;
+                      lastStone.addActionListener(new myActionListener(getTimeLeft()));
+                  }
+             }
+             else {
+                JOptionPane.showMessageDialog(null, "백돌 승리", "백돌 승리", JOptionPane.QUESTION_MESSAGE);
+                timer.stop();
+                  for (int i = 0; i < 26; i++) {
+                      for (int j = 0; j < 26; j++) {
+                          ActionListener[] actionListeners = goEgg[i][j].getActionListeners();
+                          for (ActionListener actionListener : actionListeners) {
+                              goEgg[i][j].removeActionListener(actionListener);
+                          }
+                      }
+                  }
+             }
         }
 
         checkx = e.x;
@@ -300,15 +342,29 @@ public class Omok extends JPanel {
 
         }
         if (count == 6) {
-            JOptionPane.showMessageDialog(null, "6목 감지! 게임을 계속합니다", "6목 감지", JOptionPane.QUESTION_MESSAGE);
-            if (!stoneStack.isEmpty() && !turnStack.isEmpty()) {
-                GoEgg lastStone = stoneStack.pop();
-                ImageIcon lastTurn = turnStack.pop();
-                lastStone.setIcon(img);
-                lastStone.state = "N";
-                turn = lastTurn;
-                lastStone.addActionListener(new myActionListener(getTimeLeft()));
-            }
+        	if(e.state.equals("B")) {
+                JOptionPane.showMessageDialog(null, "6목 감지! 게임을 계속합니다", "6목 감지", JOptionPane.QUESTION_MESSAGE);
+                  if (!stoneStack.isEmpty() && !turnStack.isEmpty()) {
+                      GoEgg lastStone = stoneStack.pop();
+                      ImageIcon lastTurn = turnStack.pop();
+                      lastStone.setIcon(img);
+                      lastStone.state = "N";
+                      turn = lastTurn;
+                      lastStone.addActionListener(new myActionListener(getTimeLeft()));
+                  }
+             }
+             else {
+                JOptionPane.showMessageDialog(null, "백돌 승리", "백돌 승리", JOptionPane.QUESTION_MESSAGE);
+                timer.stop();
+                  for (int i = 0; i < 26; i++) {
+                      for (int j = 0; j < 26; j++) {
+                          ActionListener[] actionListeners = goEgg[i][j].getActionListeners();
+                          for (ActionListener actionListener : actionListeners) {
+                              goEgg[i][j].removeActionListener(actionListener);
+                          }
+                      }
+                  }
+             }
         }
 
     }
