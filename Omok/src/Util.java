@@ -149,9 +149,9 @@ public class Util extends JPanel {
         startScreenButton.setContentAreaFilled(false);
         startScreenButton.setBorderPainted(false);
         startScreenButton.setFocusPainted(false);
-        startScreenButton.setIcon(new ImageIcon("images//undo.png"));
-        startScreenButton.setRolloverIcon(new ImageIcon("images//undo_hover.png"));
-        startScreenButton.setPressedIcon(new ImageIcon("images//undo_pressed.png"));
+        startScreenButton.setIcon(new ImageIcon("images//startscreen.png"));
+        startScreenButton.setRolloverIcon(new ImageIcon("images//startscreen_hover.png"));
+        startScreenButton.setPressedIcon(new ImageIcon("images//startscreen_pressed.png"));
         
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
